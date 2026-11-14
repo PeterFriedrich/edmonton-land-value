@@ -19,3 +19,4 @@ locks, add a row; when one is superseded, strike it (`~~...~~`) or mark it
 
 | When | Decision | Full reasoning |
 |------|----------|----------------|
+| 2026-11-14 | **v1 outcome is total assessed value, not an estimated land value.** Effects are estimated on `assessed_value` over 2012–2023 plus the current roll and labelled "in assessed value". The land layer is a later stage with its own plan. Rejected: land layer first (every effect would rest on our own unvalidated land model, with no prior result to compare against); both in parallel (double the v1 build and a second set of assumptions). `[unverifiable]`: no code exists yet. | `docs/SCOPE_research.md` §4, §6.1 |
