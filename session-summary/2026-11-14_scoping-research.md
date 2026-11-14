@@ -79,3 +79,69 @@
 - **Message to `server`:** asked it to add a row for `/home/opc/research/edmonton-land-value/` to `/home/opc/research/README.md`. No reply as of this handoff. Check whether the row is there; that file is `server`'s to edit, not ours.
 - **Gotcha seen this session:** a verification chain of `pytest … | tail -1 && git commit` does **not** stop on a pytest failure, because the pipe's exit status is `tail`'s. Run pytest with `.venv/bin/python` (this repo **does** have a `.venv`; §3 above is wrong to say it has none) and chain on pytest's own status: `.venv/bin/python -m pytest tests -q && git commit …`.
 - **Next steps:** unchanged from §4. The first action for the planning session (Fable) is to read `docs/SCOPE_research.md` and go through its §6 decisions with the owner.
+
+---
+
+# 2026-11-14: foundational planning handoff (S2)
+
+## 0. Session Metadata
+- **Model:** Fable 5.2 (`claude-fable-5-2`), with no model switch during the session.
+- **Effort:** `medium` (checked with `echo "$CLAUDE_EFFORT"`).
+- **Date / session #:** 2026-11-14, S2. S1 is the section above; where the two disagree, this section is newer.
+
+## 1. Goal
+- **Project:** estimate how much city investments and major events contributed to Edmonton assessed values, and show it on an interactive map.
+- **This session:** take the owner through the nine planning decisions in `docs/SCOPE_research.md` §6, record them, answer the fit table, and replace the planning item with a build backlog.
+
+## 2. Current State
+### ✅ Completed
+- **PR #1 (S1) is merged**: merge commit `74a6d61` on `origin/master`. `server` added the `research/README.md` row S1 asked for.
+- **PR #2** (`docs/foundational-planning`, https://github.com/PeterFriedrich/edmonton-land-value/pull/2): MERGED by the owner mid-session, merge commit `d2105cc`, confirmed on `origin/master` with `git merge-base --is-ancestor`. Docs only, no synced file.
+- **All nine decisions answered by the owner**, each picked in session (the owner took the recommended option every time):
+  1. **Outcome:** total assessed value for v1 (2012–2023 plus the current roll), labelled "in assessed value". The land layer is a later stage.
+  2. **First case:** Metro Line LRT, then Valley Line SE (construction effect from the clean window; opening effect from the current roll as one flagged point). Parcels abutting an LRT right of way are flagged.
+  3. **Unit:** estimate on account-level points, detached and condo modelled separately; display as H3 hexagons (resolution 9), neighbourhoods at low zoom.
+  4. **Downtown:** no attribution in v1. Downtown accounts stay in the panel and on the map but are excluded from LRT treatment and control groups.
+  5. **Zoning change and reversal:** a later study, gated on the land layer and a usable post-2024 roll; the reversal half waits for the 2028 roll.
+  6. **Sales data:** deferred. The owner decides after a Metro Line result exists.
+  7. **Map stack:** follows `edmonton-civic-map` (MapLibre GL JS with its own layers only, PMTiles, Vite with plain JavaScript, static on GitHub Pages, no outside requests).
+  8. **Out of scope:** all five items (SHAP as causal, per-parcel dollars, causal macro attribution, separating downtown projects, "investment ROI").
+  9. **Panel build:** two modules. Only `src/download_assessments.py` is approved. `src/build_panel.py` gets its own plan after the downloaded data is profiled.
+- **Files changed by PR #2:**
+  - `docs/DECISIONS.md`: eight rows (decisions 1–7 and 9), all `[unverifiable]` because no code exists.
+  - `docs/SCOPE.md`: the five out-of-scope bullets (decision 8 lives here, not in a decisions row).
+  - `docs/CHANGE_PIPELINE.md` §"This project's fit": answered, 19 `adopted`, 11 `later`, none `no`.
+  - `TODO.md`: the two planning items closed and archived to `docs/TODO_archive.md`; the build backlog replaces them.
+
+### ⚠️ In Progress
+- This handoff is on its own branch, `docs/handoff-s2` (PR #3), because PR #2 merged before the handoff was committed. Nothing else is half-done. No code, no data downloaded.
+
+### ❌ Blocking Issues
+- None.
+
+## 3. Technical Learnings
+- **`tippecanoe`, `pmtiles` and `ogr2ogr` are not on the Oracle box's PATH** (checked with `which`). How `edmonton-civic-map` builds its tiles was not looked into; ask that session before the map build.
+- **`master` requires the `test` check**, admins not enforced (checked with `gh api …/branches/master/protection`).
+- **The Metro Line opening date (2015-09-06) is still only reported**, not checked against a primary source.
+- **Sibling stack rows:** the civic-map stack decision is its `docs/DECISIONS.md` row of 2026-10-13; `edmonton-tax-viz` uses frameworkless MapLibre plus deck.gl.
+- **Guards:** `scripts/check_fit_table.py` and `scripts/check_assumptions.py` exist alongside the decisions and citation guards. Run all of them with `for c in scripts/check_*.py; do .venv/bin/python "$c"; done`. `check_doc_citations.py` prints about 32 warnings for template files that don't exist yet and still exits 0.
+- **TODO format:** mark an item `- [x]`, then `.venv/bin/python tools/todo_archive.py` moves it to `docs/TODO_archive.md` and leaves a `## Done` line.
+- **Public repo:** decision rows and the backlog name no prospective data holders. Keep any outreach plan in `/home/opc/research/edmonton-land-value/`.
+- **The owner merged PR #2 within minutes of CI going green**, between the PR check and the handoff commit. The commit chain's own `gh pr view … = OPEN` test stopped it; keep that test in the chain.
+- **Disk:** 9.3 GB free on 2026-11-14.
+
+## 4. Next Steps (prioritized)
+1. **Check PR #3** (the handoff, `gh pr view 3 --json state,mergeCommit`). If it is unmerged, it is markdown only with no synced file. Then branch fresh from `origin/master`.
+2. **Build the assessment downloader, `src/download_assessments.py`** (plan approved; first item in `TODO.md`):
+   - Page `qi6a-xuwt` one assessment year at a time (50k-row cap per request, stable `$order`) into `data/raw/` as one parquet file per year, plus the current roll `q7d6-ambg`.
+   - Fail if a year's row count differs from the server's `count(*)`. Write a manifest (dataset, year, rows, server count, fetch time).
+   - Keep 2024–25, flagged incomplete. Never drop them.
+   - Use certifi's CA bundle. Add the dependencies to `requirements.txt` and, if CI needs them, `requirements-ci.txt` (`scripts/check_requirements.py` keeps the two in step).
+   - Break the row-count guard on purpose and confirm it goes red. Then update the decision 9 row to cite the test, and record findings in `data/DATA.md` (a synced file, so that PR needs the owner's merge).
+3. **Profile the raw panel and write the linker plan** for the owner: account churn, coordinate shifts, splits and condo conversions, and how the current roll joins the history across renumbered accounts.
+4. The rest of the order is in `TODO.md`: linker, events table, Metro Line study (plan first), Valley Line SE, map v1.
+
+## 5. Restoration Procedure
+- `cd ~/edmonton-land-value && git config core.hooksPath .githooks && gh issue list --state open` (no open issues on 2026-11-14).
+- `.venv` exists; it holds only `pytest` and `copier` so far. Tests: `.venv/bin/python -m pytest tests -q` (124 passed, 1 skipped).
+- Before the download, run `df -h /`.
