@@ -23,3 +23,4 @@ unsent as a sub-item of a closed parent and go invisible. Status must be one of
 
 | Date found | Source / dataset | Defect | Evidence | What it breaks here | Status |
 |------------|------------------|--------|----------|---------------------|--------|
+| 2026-11-14 (first found by `edmonton-tax-viz`) | `qi6a-xuwt` Property Assessment Data (Historical) | 2024 and 2025 slices are missing 2,448 accounts that exist in earlier years and in the current roll, in whole buildings | Re-checked here: 10310 102 St NW has 315 accounts in 2021–2023 and 0 in 2024–2025 (`$group=assessment_year` query, 2026-11-14). Full evidence: https://peterfriedrich.github.io/edmonton-tax-viz/notebooks/historical-2024-gap.html | The historical panel is usable for 2012–2023 only; the Valley Line SE post-opening period is missing | NOT SENT (the draft report belongs to `edmonton-tax-viz`, `docs/DRAFT_bug_report_historical_dropout.md`) |

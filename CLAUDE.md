@@ -22,6 +22,7 @@ Edmonton land value: model land values and estimate how much city investments (a
 - `docs/CLAUDE_WEB.md` — **read before a Claude web research chat**: the generated brief (`scripts/make_brief.py`), claude.ai Project sync, the reply format. `docs/SCOPE.md` is its one hand-kept input. **A PR that changes a synced file (`docs/BRIEF.md`, `docs/SPEC_*.md`, `docs/ARCHITECTURE.md`, `data/DATA.md`) opens its description with "After merge: press Sync in the claude.ai Project." and the changed synced paths, one per line** — the web side cannot notice it is stale, and the owner syncs by ticking paths. Asked "what do I sync?", answer with the paths first.
 - `docs/COPIER.md` — **read before pulling template changes** (`copier update`) or starting a project from the template.
 - `session-summary/` — session handoff notes. Read the latest before starting work; older ones live in `session-summary/archive/` (don't bulk-read them).
+- `docs/SCOPE_research.md`: what the 2026-11-14 prior-art and data research established (prior art, Edmonton datasets and defects, assessment circularity, candidate events) and the decisions planning must make. **Read before planning or scoping any build.**
 - <`docs/SPEC_*.md`, `docs/ARCHITECTURE.md`, `docs/RUNBOOK.md` … add as they are written, one line each, with WHEN to read it>
 
 ## Token Efficiency
