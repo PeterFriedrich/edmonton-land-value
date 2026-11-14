@@ -70,3 +70,12 @@
 - `cd ~/edmonton-land-value && git config core.hooksPath .githooks && gh issue list --state open`
 - Create a venv when code starts: `python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt` (check `requirements.txt` first).
 - Before any big download, run `df -h /`. It showed about 9 GB free on 2026-11-14.
+
+---
+
+## Update: end of session (/handoff, 2026-11-14)
+- **Model / effort:** Opus 5.5 (`claude-opus-5-5`), `medium` (re-checked with `$CLAUDE_EFFORT`). Same as above.
+- **PR #1** (`docs/scoping-research`): OPEN, CI `test` **pass**. The owner merges it, because it changes `data/DATA.md`, a synced file, so the session can't self-merge. After merge, confirm it landed with `git merge-base --is-ancestor <merge sha> origin/master`. `docs/BRIEF.md` doesn't exist yet, so there's no claude.ai Project sync to do.
+- **Message to `server`:** asked it to add a row for `/home/opc/research/edmonton-land-value/` to `/home/opc/research/README.md`. No reply as of this handoff. Check whether the row is there; that file is `server`'s to edit, not ours.
+- **Gotcha seen this session:** a verification chain of `pytest … | tail -1 && git commit` does **not** stop on a pytest failure, because the pipe's exit status is `tail`'s. Run pytest with `.venv/bin/python` (this repo **does** have a `.venv`; §3 above is wrong to say it has none) and chain on pytest's own status: `.venv/bin/python -m pytest tests -q && git commit …`.
+- **Next steps:** unchanged from §4. The first action for the planning session (Fable) is to read `docs/SCOPE_research.md` and go through its §6 decisions with the owner.
