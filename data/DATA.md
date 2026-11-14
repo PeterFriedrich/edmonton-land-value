@@ -43,6 +43,7 @@ Nothing is downloaded yet (2026-11-14). The entries below come from Socrata meta
 
 ### LRT
 - **Dataset ids:** stations `fhxi-cnhe`, routes `rpjw-4jft`, network `p4jk-ys2y`, tracks `8r95-rjy4`. Geometry only, with no opening dates. Dates go in a hand-kept event table.
+- **`fhxi-cnhe` is platform-level and has no NAIT entry** (measured 2026-11-14): 54 rows, two per station for most, 28 distinct names. The Metro Line's NAIT terminus is absent under any name, so its position must come from the track geometry or a hand-kept point. First treated-account counts by line are in `docs/SPEC_event_study.md` §4.
 
 ### Permits
 - **Dataset ids:** Development Permits `2ccn-pwtu` (2019+ variant `q4gd-6q9r`); General Building Permits `24uj-dj8v` (has `construction_value, floor_area, units_added`, lat/lon).
