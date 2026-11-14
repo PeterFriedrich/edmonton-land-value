@@ -232,33 +232,33 @@ the point: it shows the owner a gap, such as `master` with no required check.
 
 | Stage | Step | This project |
 |---|---|---|
-| Before the PR | Plan first for a new module, schema or CI change | not evaluated |
-| | Reproduce before fixing | not evaluated |
-| | A decision that protects a number is a test first | not evaluated |
-| | Unproven premises indexed in `docs/ASSUMPTIONS.md` | not evaluated |
-| | Verify, and show the output | not evaluated |
-| | A moved published number shown old → new, with why | not evaluated |
-| | Break each new or changed guard on purpose | not evaluated |
-| | Review the diff with `/code-review` (trial) | not evaluated |
-| | `/security-review` on this repo's risky paths (list them) | not evaluated |
-| | A kind of finding seen twice is fixed at the source | not evaluated |
-| | Commit each working unit | not evaluated |
-| The PR | A fresh branch from `origin/master` per PR | not evaluated |
-| | `Code review:` line in the description (trial) | not evaluated |
-| | Pre-existing findings go to `TODO.md` or a ledger, not this PR | not evaluated |
-| | A bug-fix PR names its cause | not evaluated |
-| | The description carries `Tested:` and `Undo:` | not evaluated |
-| | `Risk:` tier set by this repo's path list (list them) | not evaluated |
-| | Sync note for claude.ai-synced files | not evaluated |
-| | CI green, and `master` requires the `test` check | not evaluated |
-| | No timed PR check-ins | not evaluated |
-| Merging | The owner merges | not evaluated |
-| | A push after the owner looked is announced on the PR | not evaluated |
-| | Pre-push hook enabled (`git config core.hooksPath .githooks`) | not evaluated |
-| | Work confirmed on `master` with `git merge-base` | not evaluated |
-| After the merge | Template changes pulled by `copier update` | not evaluated |
-| | Publish, with a gate before it ships | not evaluated |
-| | Seen before the public build | not evaluated |
-| | Watch and roll back | not evaluated |
-| | Fixes after a merge are counted (the guardrail) | not evaluated |
-| | Upstream data defects logged in `docs/DATA_ISSUES.md` | not evaluated |
+| Before the PR | Plan first for a new module, schema or CI change | adopted: habit; the downloader plan was approved 2026-11-14 and the linker gets its own |
+| | Reproduce before fixing | adopted: habit |
+| | A decision that protects a number is a test first | adopted: `scripts/check_decisions_log.py` in `tests.yml`; every row so far is `[unverifiable]` because no code exists |
+| | Unproven premises indexed in `docs/ASSUMPTIONS.md` | later: the first estimate (the Metro Line study) |
+| | Verify, and show the output | adopted: habit; nothing is published yet, so no tier list |
+| | A moved published number shown old → new, with why | later: the first published number |
+| | Break each new or changed guard on purpose | adopted: habit, from the first guard (the downloader's row-count check) |
+| | Review the diff with `/code-review` (trial) | later: the owner starts the trial here |
+| | `/security-review` on this repo's risky paths (list them) | later: a path that handles a secret or user input; none exists (public data, no credentials) |
+| | A kind of finding seen twice is fixed at the source | adopted: habit |
+| | Commit each working unit | adopted: habit |
+| The PR | A fresh branch from `origin/master` per PR | adopted: habit |
+| | `Code review:` line in the description (trial) | later: the owner starts the trial here |
+| | Pre-existing findings go to `TODO.md` or a ledger, not this PR | adopted: habit |
+| | A bug-fix PR names its cause | adopted: habit |
+| | The description carries `Tested:` and `Undo:` | adopted: habit |
+| | `Risk:` tier set by this repo's path list (list them) | later: `src/` holds code; until then every PR is docs |
+| | Sync note for claude.ai-synced files | later: `docs/BRIEF.md` exists and a claude.ai Project is set up |
+| | CI green, and `master` requires the `test` check | adopted: `tests.yml`; `master` requires `test` (admins not enforced), checked 2026-11-14 |
+| | No timed PR check-ins | adopted: habit |
+| Merging | The owner merges | adopted: habit, with the self-merge exception in the owner's global rules |
+| | A push after the owner looked is announced on the PR | adopted: habit |
+| | Pre-push hook enabled (`git config core.hooksPath .githooks`) | adopted: set in the Oracle clone, checked 2026-11-14; a fresh clone must set it |
+| | Work confirmed on `master` with `git merge-base` | adopted: habit |
+| After the merge | Template changes pulled by `copier update` | adopted: `.copier-answers.yml` present; the session-start drift notice |
+| | Publish, with a gate before it ships | later: the first web page |
+| | Seen before the public build | later: the first web page |
+| | Watch and roll back | later: the first web page |
+| | Fixes after a merge are counted (the guardrail) | later: the first code PR |
+| | Upstream data defects logged in `docs/DATA_ISSUES.md` | adopted: one row so far (the 2024–25 gap, not sent) |
