@@ -31,6 +31,13 @@ Nothing is downloaded yet (2026-11-14). The entries below come from Socrata meta
   - API: the default page size is 1,000 and the server caps each request at 50k rows, so page and verify against the server count.
   - Identifiers churn (accounts, neighbourhood names, coordinates), and `lot_size` sometimes holds ownership shares instead of m². These are reported by `edmonton-tax-viz` (its `data/DATA.md` and `docs/DATA_ISSUES.md` §3) and not yet re-measured here.
   - Assessment year Y values the market at July 1 of Y−1 (City methodology).
+  - **Measured 2026-11-15 by API count queries** (2012, 2015 and 2023 only):
+    - `account_number` (text) is unique within a year.
+    - `assessed_value` is never null; about 1,000 rows a year are zero.
+    - Missing coordinates: 381 (2012), 326 (2015), 9,472 (2023). The jump is unexplained.
+    - `legal_description` has at least two shapes: `Plan: … Block: … Lot: …` for a lot and `Plan: … Unit: …` for a condo unit.
+    - `zoning` is never null. `year_built` is null on about 20,000 rows a year. `tax_class_pct_1..3` are text.
+    - What the full profile must measure is in `docs/SPEC_panel_profile.md`.
 
 ### Property Assessment Data (Current Calendar Year)
 - **Dataset id:** `q7d6-ambg`. 439,825 rows on 2026-11-14. Has `ward` and `tax_class`. No `year_built`, `zoning` or `lot_size`: those are in `dkk9-cj3x`. Account numbers can differ from `qi6a-xuwt` for the same parcel (reported by `edmonton-tax-viz`).

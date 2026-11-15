@@ -24,6 +24,7 @@ Edmonton land value: model land values and estimate how much city investments (a
 - `session-summary/` — session handoff notes. Read the latest before starting work; older ones live in `session-summary/archive/` (don't bulk-read them).
 - `docs/SCOPE_research.md`: what the 2026-11-14 prior-art and data research established (prior art, Edmonton datasets and defects, assessment circularity, candidate events) and the decisions planning must make. **Read before planning or scoping any build.**
 - `docs/SPEC_event_study.md`: the LRT event-study design (timing, sample, rings, comparison group, placebo-based uncertainty) and the gates that decide whether the Metro Line or Valley Line SE is the first result. A plan awaiting approval. **Read before planning the linker, the events table or the event-study module, and before quoting any LRT effect.**
+- `docs/SPEC_panel_profile.md`: what the profile of the raw assessment files must measure (account persistence, coordinate shifts, splits and renumberings, property groups, the current-roll join) and which linker decision each measurement feeds. A plan awaiting approval. **Read before writing or running the profile, and before writing the linker plan.**
 - <`docs/SPEC_*.md`, `docs/ARCHITECTURE.md`, `docs/RUNBOOK.md` … add as they are written, one line each, with WHEN to read it>
 
 ## Token Efficiency
