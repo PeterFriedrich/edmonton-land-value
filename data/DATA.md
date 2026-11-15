@@ -55,4 +55,9 @@ Nothing is downloaded yet (2026-11-14). The entries below come from Socrata meta
 - `https://www.edmonton.ca/sites/default/files/public-files/2026_RES_Land.pdf` and `2026_RES_Improved.pdf`, read 2026-11-14.
   - Valuation date is July 1 of the prior year.
   - The land model uses 8 market areas plus study areas, with sales from 2020-07-01 to 2025-06-30, time-adjusted.
+  - **More guides, read 2026-11-15** (same folder): `2026_RES_HighriseCondo.pdf`, `2026_RES_LowriseCondo.pdf`, `2026_RES_TownhomeCondo.pdf`, `2026_RES_Cost.pdf`, `2025_RES_Improved.pdf`, `2023_RES_Land.pdf`, and the study-area maps `2026_StudyAreas_Neighbourhood.pdf` (20 MB). The index page is `https://www.edmonton.ca/residential_neighbourhoods/property_tax_assessment/reference-materials`. The Improved guides for 2016–2024 returned 404 under the same naming.
+  - Residential Improved covers properties with one to three dwelling units. Its location variables are market area (nine, one model each), neighbourhood and study area. No distance-to-station variable exists in any guide read.
+  - Every guide read uses a five-year sales window ending 30 June before the valuation date. Time adjustment factors are per market area, with a River Valley submarket.
+  - The condo guides have no LRT or transit term. What this means for the studies is in `docs/SPEC_event_study.md` §3A.
+  - Market-area boundaries are map images in the guide appendix. No open dataset of them was found.
   - Site influences are applied by rule. Positive: golf course, greenbelt, lake, noise barrier, park, ravine, river valley. Negative: includes **LRT influence** (abutting or across from an LRT right of way). See `docs/SCOPE_research.md` §4.
