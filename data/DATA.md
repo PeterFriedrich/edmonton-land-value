@@ -49,8 +49,18 @@ Nothing is downloaded yet (2026-11-14). The entries below come from Socrata meta
 - **Dataset ids:** `552h-hjwj` (attributes), `xw7u-7mr6` (points), `nmn5-5yzc` (lines). Fields: `asset_type, project_name, current_phase, approved_budget_m, forecasted_budget, approved_profile_schedule, forecasted_completion_date, ward, neighbourhood`, lat/lon. Despite its name, `approved_budget_m` holds dollars (e.g. 5923095). **Not checked:** whether completed projects stay in the dataset.
 
 ### LRT
-- **Dataset ids:** stations `fhxi-cnhe`, routes `rpjw-4jft`, network `p4jk-ys2y`, tracks `8r95-rjy4`. Geometry only, with no opening dates. Dates go in a hand-kept event table.
+- **Dataset ids:** stations `fhxi-cnhe`, routes `rpjw-4jft`, network `p4jk-ys2y`, tracks `8r95-rjy4`. Geometry only, with no opening dates. Dates go in the hand-kept events table (`docs/SPEC_events_table.md`).
 - **`fhxi-cnhe` is platform-level and has no NAIT entry** (measured 2026-11-14): 54 rows, two per station for most, 28 distinct names. The Metro Line's NAIT terminus is absent under any name, so its position must come from the track geometry or a hand-kept point. First treated-account counts by line are in `docs/SPEC_event_study.md` §4.
+
+### Council and committee minutes
+- **Dataset id:** `7zht-i9ve` (Council and Committee Meetings: Meeting Details, Agenda Items, and Motions, multiple terms). 75,969 rows, meetings from 2011-06-01 to 2025-09-19 across four council terms (a `group by council_term` query, 2026-11-16). Fields include `meeting_date, meeting_type, item_title, motion_description, motion_status`. The 2025–2029 term is a separate dataset series (`usf6-2n86` motions, `abcm-eai5` votes).
+- **Use:** the primary record for the date of anything council voted on. Full-text search works with `$q`; combine it with a `meeting_date` range.
+- **Quirks:** one motion often appears two or three times (as moved, as amended, as the final "Action:" text), so de-duplicate before counting. `motion_status` is empty on items with no vote. Text has typos and stray encoding (`Â`). Nothing before June 2011.
+- Found with the `edmonton-open-data-landscape` catalogue search (`python -m src.search "…"` in that repo, its `.venv`). The same search found no dataset of LRT opening or construction dates and no assessment market-area or study-area boundaries.
+
+### City project pages (documents, not data)
+- `https://www.edmonton.ca/projects_plans/transit/north-lrt-project-history` (Metro Line history back to 2005) and `https://www.edmonton.ca/projects_plans/transit/valley-line-southeast`, read 2026-11-16. They answer `curl` with a browser User-Agent and certifi's bundle, and return 502 to the web-fetch tool. What they establish is in `docs/SPEC_events_table.md` §4.
+- The Valley Line booklet (`…/public-files/documents/valley_line_lrt_booklet.pdf`, 13.8 MB, 48 pages) is page images with no text layer.
 
 ### Permits
 - **Dataset ids:** Development Permits `2ccn-pwtu` (2019+ variant `q4gd-6q9r`); General Building Permits `24uj-dj8v` (has `construction_value, floor_area, units_added`, lat/lon).
