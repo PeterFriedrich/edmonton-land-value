@@ -11,3 +11,5 @@ Items are verbatim as they were closed, newest-moved first in the order they app
 - [x] **Foundational planning.** Read `docs/SCOPE_research.md` (and, on the Oracle box, the three files in `/home/opc/research/edmonton-land-value/` it names). Take the owner through its §6 decisions. Write the locked ones into `docs/DECISIONS.md` and the rejected ideas into `docs/SCOPE.md`, then replace this item with the build backlog. Done when: §6 has an owner answer for each item, and `TODO.md` holds the first build items.
 
 - [x] **Answer the `docs/CHANGE_PIPELINE.md` "This project's fit" table.** Every row still reads `not evaluated`. Do it during the planning session (it's a template obligation at project creation).
+
+- [x] **Owner reviews `docs/SPEC_event_study.md`.** Closed 2026-11-16 (S4). The owner chose the recommended option in all eight §11 choices (gate threshold, rings, comparison group, accounts beside the tracks, the MacEwan rule, the failing-Metro outcome, the headline rolls, same market area). One `docs/DECISIONS.md` row each, dated 2026-11-16.

@@ -1,6 +1,6 @@
 # SPEC: LRT event studies (Metro Line, Valley Line SE)
 
-Written 2026-11-14 (S3); §3A added 2026-11-15 after reading the City's methodology guides. **Status: a plan awaiting the owner's approval. No code exists and nothing here has been estimated.** The one part already locked is that the first-case order is conditional on the gates in §7 (`docs/DECISIONS.md`, second 2026-11-14 first-case row). The gate thresholds and every choice listed in §11 are proposals.
+Written 2026-11-14 (S3); §3A added 2026-11-15 after reading the City's methodology guides. **Status: the design choices in §11 were decided by the owner on 2026-11-16 and are locked in `docs/DECISIONS.md`. No code exists and nothing here has been estimated.** Dates were re-checked against primary sources the same day; the sourced list is `docs/SPEC_events_table.md` §4.
 
 **Read this before** planning the linker, the events table or the event-study module, and before quoting any LRT effect.
 
@@ -26,16 +26,19 @@ Assessment year Y values the market at 1 July of Y−1 (`docs/SCOPE_research.md`
 
 | Event | Date | First affected roll | Status |
 |---|---|---|---|
-| Metro Line, original opening target | April 2014 | (expectations, 2014 roll onward) | *[reported]*, two news reports |
-| City Centre Airport closes | 2013-11-30 | 2015 | *[reported]*, news and the City's Blatchford page |
-| Metro Line opens, interim service limited to 25 km/h between MacEwan and NAIT | 2015-09-06 | **2017** | *[reported]*, two news reports; no City source read |
-| Valley Line SE groundbreaking | 2016-04-22 | **2017** | *[reported]* |
-| Valley Line SE opens | 2023-11-04 | 2025 (inside the incomplete 2024–25 years) | *[measured]* in S1 from news |
+| Metro Line, original opening target | April 2014 | (expectations, 2014 roll onward) | *[reported]*, two news reports; the City's page says "spring 2014" |
+| City Centre Airport closes | 2013-11-30 | 2015 | *[measured]* 2026-11-16: council motion of 2013-09-18 setting the date |
+| Airport Protection Overlay removed (Bylaw 16859) | 2014-06-24 | 2015 | *[measured]* 2026-11-16: council minutes |
+| Valley Line SE funding complete (Alberta commits up to $600 million) | 2014-03-11 | 2015 | *[reported]*, news published that day; the provincial release was not found |
+| Metro Line opens, interim service limited to 25 km/h between MacEwan and NAIT | 2015-09-06 | **2017** | *[measured]* 2026-11-16: the City's Metro Line page |
+| Metro Line runs at designed speed through intersections (restrictions return November 2017) | 2017-02-19 | 2018 | *[measured]* 2026-11-16: the City's Metro Line page |
+| Valley Line SE groundbreaking | 2016-04-22 | **2017** | *[measured]* 2026-11-16: Government of Canada release of that date |
+| Valley Line SE opens | 2023-11-04 | 2025 (inside the incomplete 2024–25 years) | *[measured]* 2026-11-16: the City's Valley Line Southeast page |
 
 Consequences:
 
-- **Metro Line.** Before years are the 2012–2016 rolls; the reference year is 2016; after years are 2017–2023. The panel's first roll (2012, valued July 2011) is already after the line was announced and, going by the April 2014 target, under construction. The construction-start date was not found. So the "before" years hold anticipation, and the study cannot measure the line's total effect. Qiu & Tong used 2006–08 sales as their "before" *[reported]*, which this panel cannot reach.
-- **Valley Line SE.** Before years are 2012–2016; reference 2016; construction years 2017–2023. Route approval and funding dates are not yet collected and may fall inside the before years; the events table must carry them.
+- **Metro Line.** Before years are the 2012–2016 rolls; the reference year is 2016; after years are 2017–2023. The panel's first roll (2012, valued July 2011) is already after the line was announced and, going by the April 2014 target, under construction. The City's page dates the start of right-of-way work to "2010 to 2011" and the provincial grant to 2011-04-05, both before the 2012 roll's valuation date. So every "before" year holds anticipation, and the study cannot measure the line's total effect. Qiu & Tong used 2006–08 sales as their "before" *[reported]*, which this panel cannot reach.
+- **Valley Line SE.** Before years are 2012–2016; reference 2016; construction years 2017–2023. Funding was complete on 2014-03-11 (first affected roll 2015), and the City bought land along the route from 2012. So the 2015 and 2016 rolls are after the line became certain. They stay in the model, labelled "after funding", and gate G2 is judged on 2012–2014 for this line (§7; decided 2026-11-16).
 - **Allinott's timing differs.** Allinott used 2016 as the Metro Line treatment year and 2017 for Valley Line SE construction *[measured: paper text]*. By the valuation-date rule the 2016 roll predates the Metro Line opening, so our Metro Line treatment year is one roll later than Allinott's. The replication arm (§9) uses Allinott's year; the main model uses ours.
 
 ## 3A. How the City's model produces the outcome
@@ -120,7 +123,7 @@ Each gate is computed from the linked panel **before the after-year estimates fo
 | Gate | Question | Proposed pass rule | Applies to |
 |---|---|---|---|
 | G1 Precision | Can the design see an effect of the expected size? | The placebo band for the 0–800 m ring is no wider than ±3 percentage points. | Both lines, each property group |
-| G2 Before-years | Were treated and comparison accounts moving together before the event? | Every before-year estimate (2012–2015) lies inside the placebo band. A failure can mean anticipation or a poor comparison group (§3A); either way the estimate is not published as an effect of the event. | Both lines |
+| G2 Before-years | Were treated and comparison accounts moving together before the event? | Every before-year estimate lies inside the placebo band: 2012–2015 for the Metro Line, 2012–2014 for Valley Line SE. A Valley Line SE estimate for 2015 outside the band is reported as possible anticipation of the funded line, not as a failed gate. A failure can mean anticipation or a poor comparison group (§3A); either way the estimate is not published as an effect of the event. | Both lines |
 | G3 Granularity | Do assessments vary within a neighbourhood enough to show distance? | Reported, not pass/fail: the share of the variation in yearly log change that lies within neighbourhood × group × year. Below 20%, no within-neighbourhood distance gradient is published and the 0–400 m and 400–800 m rings are merged. Given §3A, a low share is the expected result. | Both lines |
 | G4 Airport | Can the Metro Line opening be told apart from the airport closure? | Accounts 0–1,600 m from the former airport boundary and more than 1,600 m from a Metro Line station show no shift at the 2015 or 2016 roll outside the placebo band. | Metro Line only |
 | G5 Composition | Is the treated ring mostly the same accounts throughout? | Flagged accounts (§4) are no more than 15% of the treated ring. Above that, the estimate is published only with the flag shown. | Both lines |
@@ -135,7 +138,7 @@ Each gate is computed from the linked panel **before the after-year estimates fo
 
 ## 8. Known confounds (not gated)
 
-- **Metro Line:** the airport closure and the Blatchford redevelopment; the reduced-speed interim service and its traffic delays at crossings; Capital Line stations already near McCauley; NAIT station moved about 200 m on 2024-01-20 (outside the window).
+- **Metro Line:** the airport closure, the Blatchford redevelopment decision (2014-06-10) and the removal of the Airport Protection Overlay (2014-06-24), all first touching the 2015 roll; the service itself, which ran restricted from opening, at designed speed only from February to November 2017, then restricted again until after November 2019, and every 15 minutes instead of the designed 10, so every Metro Line result is labelled "opening with restricted service"; traffic delays at crossings; Capital Line stations already near McCauley; NAIT station moved about 200 m on 2024-01-20 (outside the window).
 - **Valley Line SE:** redevelopment near Bonnie Doon and Holyrood; the 2020 pandemic shift, which may differ between mature and suburban areas (the 2012 matching addresses level, not this); construction disruption and expected access arrive together and cannot be separated.
 - **Both:** each roll pools five years of sales, so an effect ramps in over five rolls (§3A). A flat first after-year is not evidence of no effect. The pandemic years sit inside the 2022 and 2023 windows.
 
@@ -150,7 +153,7 @@ The module layout and output schema of the event-study code (a plan of its own, 
 
 ## 11. The owner's decisions
 
-Each has a recommendation; none is locked.
+**Decided 2026-11-16: the owner chose the recommended option in all eight.** Each is a row in `docs/DECISIONS.md`. The alternatives are kept below as the record of what was turned down.
 
 1. **G1 threshold:** ±3 percentage points (recommended), or another width.
 2. **Rings:** 0–400 and 400–800 m treated, 800–1,600 m spillover (recommended), or Allinott's single 1 km ring as the main design.
